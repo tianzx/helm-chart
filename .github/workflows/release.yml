@@ -8,6 +8,8 @@ jobs:
       permissions:
         contents: read
         packages: write
+        id-token: 'write'
+        issues: 'write' #__This fixed the HttpError: Resource not accessible by integration
       steps:
         - name: Checkout
           uses: actions/checkout@v3
