@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: istio-ingressgateway
+spec:
+  selector:
+    istio: ingressgateway # 使用 istio-ingressgateway controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+#   - port:
+#       number: 443
+#       name: https
+#       protocol: HTTPS
+#     hosts:
+#     - "*"
+#     tls:
+#       mode: SIMPLE # 可以更改为其他模式，例如 MUTUAL，依赖于你的需求
+#     #   todo 
+    #   serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+    #   privateKey: /etc/istio/ingressgateway-certs/tls.key
