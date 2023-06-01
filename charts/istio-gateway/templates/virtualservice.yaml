@@ -8,6 +8,12 @@ spec:
   gateways:
   - ingressgateway
   http:
+  - route:
+    - destination:
+      host: api-service 
+      port:
+        number: 80
+      none: true    # 使用 none 类型的 backend
   # - match:
   #   - uri:
   #       prefix: /api
