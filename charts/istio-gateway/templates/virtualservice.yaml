@@ -7,13 +7,10 @@ spec:
   - "*"
   gateways:
   - ingressgateway
-  http:
+  http:  
   - route:
-    - destination:
-      host: api-service 
-      port:
-        number: 80
-      none: true    # 使用 none 类型的 backend
+  - destination:
+      subset: none
   # - match:
   #   - uri:
   #       prefix: /api
