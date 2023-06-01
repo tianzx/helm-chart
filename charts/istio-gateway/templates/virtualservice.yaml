@@ -7,7 +7,7 @@ spec:
   - "*"
   gateways:
   - ingressgateway
-  # http:
+  http:
   # - match:
   #   - uri:
   #       prefix: /api
