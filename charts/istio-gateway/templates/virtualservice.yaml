@@ -1,21 +1,13 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1beta1  
 kind: VirtualService
 metadata:
   name: api-virtualservice
 spec:
   hosts:
-  - "*"
-  gateways:
-  - ingressgateway
-  http:  
-  - route:
-  - destination:
+  - "*"   
+  gateways:  
+  - ingressgateway  
+  http:   
+  - route:  
+  - destination:    
       subset: none
-  # - match:
-  #   - uri:
-  #       prefix: /api
-  #   route:
-  #   - destination:
-  #       host: api-service
-  #       port:
-  #         number: 80
