@@ -14,6 +14,16 @@ entries:
   istio-gateway:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-02T02:39:35.569950292Z"
+    description: A Helm chart for Kubernetes
+    digest: 21ad1247064236afa29633b6a46b5d45e408dc9206d5a32c965f981524e0b69b
+    name: istio-gateway
+    type: application
+    urls:
+    - https://github.com/tianzx/helm-chart/releases/download/istio-gateway-0.1.19/istio-gateway-0.1.19.tgz
+    version: 0.1.19
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-06-02T02:35:55.216409197Z"
     description: A Helm chart for Kubernetes
     digest: 456ef8f4dbde7377faf212d6463b5260d0a28fe67a6b6342eb785ffd0e20f15e
@@ -182,4 +192,4 @@ entries:
     urls:
     - https://github.com/tianzx/helm-chart/releases/download/istio-gateway-0.1.2/istio-gateway-0.1.2.tgz
     version: 0.1.2
-generated: "2023-06-02T02:35:55.216521698Z"
+generated: "2023-06-02T02:39:35.5700488Z"
