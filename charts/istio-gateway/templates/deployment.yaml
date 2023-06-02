@@ -24,15 +24,19 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "istio-gateway.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- with .Values.securityContext }}
+        {{- toYaml . | nindent 8 }}
+        sysctls:
+        - name: net.ipv4.ip_unprivileged_port_start
+          value: "0"
+        {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: istio-proxy
+          image: auto
+          {{- with .Values.imagePullPolicy }}
+          imagePullPolicy: {{ . }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

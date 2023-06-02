@@ -1,7 +1,7 @@
-image:
-  repository: "docker.io/istio/proxyv2"
-  tag: "1.17.2"
-  pullPolicy: IfNotPresent
+# image:
+#   repository: "docker.io/istio/proxyv2"
+#   tag: "1.17.2"
+#   pullPolicy: IfNotPresent
 
 replicaCount: 1
 
