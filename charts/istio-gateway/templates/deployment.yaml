@@ -33,7 +33,7 @@ spec:
         {{- end }}
       containers:
         - name: istio-proxy
-          image: auto
+          image: docker.io/istio/proxyv2:1.17.2
           {{- with .Values.imagePullPolicy }}
           imagePullPolicy: {{ . }}
           {{- end }}
