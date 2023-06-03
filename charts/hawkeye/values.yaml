@@ -15,10 +15,7 @@ ingress:
 
 resources:
   limits:
-    cpu: 1
-    memory: 500Mi
-  requests:
-    cpu: 1
+    cpu: 500m  
     memory: 500Mi
 
 serviceAccount:
