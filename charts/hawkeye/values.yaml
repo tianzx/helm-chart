@@ -2,7 +2,6 @@ replicaCount: 2
 
 image:
   repository: ghcr.io/tianzx/hawkeye:master
-  tag: latest
   pullPolicy: IfNotPresent
 
 service:
