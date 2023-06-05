@@ -1,11 +1,11 @@
 replicaCount: 2
 
 image:
-  repository: ghcr.io/tianzx/hawkeye
+  repository: ccr.ccs.tencentyun.com/tianzx/hawkeye
   pullPolicy: IfNotPresent
 
-imagePullSecrets:
-  - name: k3sdeploykey
+# imagePullSecrets:
+#   - name: k3sdeploykey
 
 service:
   type: ClusterIP
