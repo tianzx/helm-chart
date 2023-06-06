@@ -17,8 +17,8 @@ ingress:
 
 resources:
   limits:
-    cpu: 1000m 
-    memory: 2000Mi
+    cpu: 500m 
+    memory: 1500Mi
 
 serviceAccount:
   create: true
