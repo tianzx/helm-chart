@@ -41,16 +41,16 @@ spec:
             httpGet:
               path: /health
               port: http
-              timeoutSeconds: 5
             initialDelaySeconds: 60
             periodSeconds: 10
+            timeoutSeconds: 5
           livenessProbe:
             httpGet:
               path: /health
               port: http
-              timeoutSeconds: 5
             initialDelaySeconds: 60
             periodSeconds: 10
+            timeoutSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
          # 指定配置参数的引入
