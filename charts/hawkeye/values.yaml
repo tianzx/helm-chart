@@ -22,6 +22,8 @@ resources:
 
 serviceAccount:
   create: true
+  name: hawkeye-release
+
 
 autoscaling:
   enabled: false
