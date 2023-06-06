@@ -52,12 +52,12 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME # 指定pod中引入secret的参数名
               valueFrom:
                 secretKeyRef:
-                  name: ai-fiance-secrets # 引用secret
+                  name: ai-finance-secrets # 引用secret
                   key: mysql-user # 用户名关联的key
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ai-fiance-secrets
+                  name: ai-finance-secrets
                   key: mysql-passwd
       {{- with .Values.nodeSelector }}
       nodeSelector:
