@@ -1,0 +1,11 @@
+master:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+replica:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 56Mi
