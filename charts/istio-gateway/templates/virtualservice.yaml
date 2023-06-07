@@ -10,7 +10,7 @@ spec:
   http:
     - match:
         - uri:
-            exact: /hawkeye
+            prefix: /hawkeye
       route:
         - destination:
             host: hawkeye-release.prod.svc.cluster.local
