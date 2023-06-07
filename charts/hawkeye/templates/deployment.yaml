@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "hawkeye.fullname" . }}
-  annotations:
-     sidecar.istio.io/inject: "true"
+  # annotations:
+  #    sidecar.istio.io/inject: "true"
   labels:
     {{- include "hawkeye.labels" . | nindent 4 }}
 spec:
