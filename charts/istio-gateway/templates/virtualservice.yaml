@@ -4,13 +4,15 @@ metadata:
   name: ai-finance-virtualservice
 spec:
   hosts:
-  - "*"
+    - "*"
   gateways:
-  - ai-finance-istio-gateway
+    - ai-finance-istio-gateway
   http:
     - match:
         - uri:
-            prefix: /hawkeye
+            prefix: /hawkeye/
+      rewrite:
+        uri: /
       route:
         - destination:
             host: hawkeye-release.prod.svc.cluster.local
