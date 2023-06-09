@@ -1,14 +1,15 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: ai-finance-virtualservice
+  name: combined-virtualservice
 spec:
   hosts:
     - "*"
   gateways:
     - ai-finance-istio-gateway
   http:
-    - match:
+    - name: ai-finance
+      match:
         - uri:
             prefix: /hawkeye/
       rewrite:
@@ -16,5 +17,16 @@ spec:
       route:
         - destination:
             host: hawkeye-release.prod.svc.cluster.local
+            port:
+              number: 80
+    - name: argocd
+      match:
+        - uri:
+            prefix: /
+      rewrite:
+        uri: /argo-cd/
+      route:
+        - destination:
+            host: argocd-server.argocd.svc.cluster.local
             port:
               number: 80
