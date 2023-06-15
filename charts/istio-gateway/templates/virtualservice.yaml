@@ -25,14 +25,3 @@ gateways:
             host: loki-grafana.default.svc.cluster.local
             port:
               number: 80
-    # - name: argocd
-    #   match:
-    #     - uri:
-    #         prefix: /
-    #   rewrite:
-    #     uri: /argo-cd/
-    #   route:
-    #     - destination:
-    #         host: argocd-server.argocd.svc.cluster.local
-    #         port:
-    #           number: 80
