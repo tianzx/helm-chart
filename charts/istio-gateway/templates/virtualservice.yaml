@@ -1,11 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: combined-virtualservice
-spec:
-  hosts:
-    - "*"
-  gateways:
+gateways:
     - ai-finance-istio-gateway
   http:
     - name: ai-finance
@@ -19,14 +12,27 @@ spec:
             host: hawkeye-release.prod.svc.cluster.local
             port:
               number: 80
-    - name: argocd
+    - name: grafana
       match:
         - uri:
-            prefix: /
+            exact: /grafana
+        - uri:
+            prefix: /grafana/
       rewrite:
-        uri: /argo-cd/
+        uri: /
       route:
         - destination:
-            host: argocd-server.argocd.svc.cluster.local
+            host: loki-grafana.default.svc.cluster.local
             port:
               number: 80
+    # - name: argocd
+    #   match:
+    #     - uri:
+    #         prefix: /
+    #   rewrite:
+    #     uri: /argo-cd/
+    #   route:
+    #     - destination:
+    #         host: argocd-server.argocd.svc.cluster.local
+    #         port:
+    #           number: 80
