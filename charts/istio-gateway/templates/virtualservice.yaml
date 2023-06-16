@@ -1,4 +1,11 @@
-gateways:
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: combined-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
     - ai-finance-istio-gateway
   http:
     - name: ai-finance
@@ -22,6 +29,19 @@ gateways:
         uri: /
       route:
         - destination:
-            host: loki-grafana.default.svc.cluster.local
+            host: loki-grafana.loki.svc.cluster.local
             port:
               number: 80
+    # - name: weave-gitops
+    #   match:
+    #     - uri:
+    #         exact: /weave-gitops
+    #     - uri:
+    #         prefix: /weave-gitops/
+    #   rewrite:
+    #     uri: /
+    #   route:
+    #     - destination:
+    #         host: ww-gitops-weave-gitops.flux-system.svc.cluster.local
+    #         port:
+    #           number: 9001

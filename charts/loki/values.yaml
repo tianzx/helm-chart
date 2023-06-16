@@ -1,0 +1,13 @@
+env:
+  GF_SERVER_ROOT_URL: "http://42.192.1.41/grafana/"
+  GF_SERVER_SERVE_FROM_SUB_PATH: "false"
+minio:
+  enabled: true
+grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    size: 10Gi
+    storageClassName: local-path
+    accessModes:
+      - ReadWriteOnce
