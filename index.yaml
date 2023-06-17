@@ -3,6 +3,16 @@ entries:
   hawkeye:
   - apiVersion: v2
     appVersion: 1.0.5299106125
+    created: "2023-06-17T16:55:17.855013388Z"
+    description: A Helm chart for Kubernetes
+    digest: 985d3a8c5cacbd244134c0113963c78c3450b6521b59c7f723a6c9e99c12766f
+    name: hawkeye
+    type: application
+    urls:
+    - https://github.com/tianzx/helm-chart/releases/download/hawkeye-1.1.35/hawkeye-1.1.35.tgz
+    version: 1.1.35
+  - apiVersion: v2
+    appVersion: 1.0.5299106125
     created: "2023-06-17T16:35:54.011930932Z"
     description: A Helm chart for Kubernetes
     digest: df5a382ff646d426efba36c63af633e9c710ed64c8097f87540d1ebd4eefbc2e
@@ -1282,4 +1292,4 @@ entries:
     urls:
     - https://github.com/tianzx/helm-chart/releases/download/istio-gateway-0.1.2/istio-gateway-0.1.2.tgz
     version: 0.1.2
-generated: "2023-06-17T16:35:54.012323336Z"
+generated: "2023-06-17T16:55:17.85534529Z"
