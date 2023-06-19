@@ -4,9 +4,11 @@ metadata:
   name: combined-virtualservice
 spec:
   hosts:
-    - "*"
+    - "42.192.1.41"
+    - hawkeye-release
   gateways:
     - ai-finance-istio-gateway
+    - mesh
   http:
     - name: ai-finance
       match:
