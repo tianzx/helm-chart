@@ -5,7 +5,6 @@ metadata:
 spec:
   hosts:
     - "42.192.1.41"
-    - hawkeye-release
   gateways:
     - ai-finance-istio-gateway
     - mesh
