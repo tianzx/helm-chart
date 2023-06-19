@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: combined-virtualservice
@@ -14,11 +14,9 @@ spec:
             prefix: /hawkeye/
       rewrite:
         uri: /
-      route:
-        - destination:
-            host: hawkeye-release.prod.svc.cluster.local
-            port:
-              number: 80
+      delegate:
+        name: hawkeye-release
+        namespace: prod
     - name: grafana
       match:
         - uri:
@@ -32,16 +30,3 @@ spec:
             host: loki-grafana.loki.svc.cluster.local
             port:
               number: 80
-    # - name: weave-gitops
-    #   match:
-    #     - uri:
-    #         exact: /weave-gitops
-    #     - uri:
-    #         prefix: /weave-gitops/
-    #   rewrite:
-    #     uri: /
-    #   route:
-    #     - destination:
-    #         host: ww-gitops-weave-gitops.flux-system.svc.cluster.local
-    #         port:
-    #           number: 9001
