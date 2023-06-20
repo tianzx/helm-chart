@@ -1,13 +1,56 @@
-env:
-  GF_SERVER_ROOT_URL: "http://42.192.1.41/grafana/"
-  GF_SERVER_SERVE_FROM_SUB_PATH: "false"
-minio:
+loki:
   enabled: true
+  isDefault: true
+  url: http://loki.loki:3100
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  livenessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+
+promtail:
+  enabled: true
+  config:
+    logLevel: info
+    serverPort: 3101
+    clients:
+      - url: http://loki.loki:3100/loki/api/v1/push
+    scrape_configs:
+      - job_name: hwakeye-job
+        static_configs:
+          - targets:
+              - localhost
+        pipeline_stages:
+        - json:
+            expressions:
+              timestamp: timestamp
+              level: level
+              thread: thread
+              logger: logger
+              message: message
+              context: context
+              trace_id: mdc.trace_id
+              trace_flags: mdc.trace_flags
+              span_id: mdc.span_id
+        - timestamp:
+            source: timestamp
+            format: RFC3339
+        - labels:
+            level: level
+            thread: thread
+            logger: logger
+            trace_id: trace_id
+            span_id: span_id
+            context: context
 grafana:
-  persistence:
-    enabled: true
-    type: pvc
-    size: 10Gi
-    storageClassName: local-path
-    accessModes:
-      - ReadWriteOnce
+  enabled: true
+  env:
+    GF_SERVER_ROOT_URL : "http://42.192.1.41/grafana/"
+    GF_SERVER_SERVE_FROM_SUB_PATH : false
+  image:
+    tag: latest
