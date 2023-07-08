@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: consul-bootstrap-token
+type: Opaque
+data:
+  token: MXFhejJ3c3h0dA==

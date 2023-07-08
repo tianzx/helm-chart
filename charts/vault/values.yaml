@@ -1,0 +1,51 @@
+global:
+  enabled: true
+  tlsDisable: true
+
+server:
+  dataStorage:
+    enabled: true
+    size: 10Gi
+    storageClass: "local-path"
+  haEnabled: true
+  replicas: 3
+  resources:
+    requests:
+      cpu: 256m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  service:
+    enabled: true
+    type: ClusterIP
+  standalone:
+    enabled: false
+  ha:
+    enabled: true
+    raft:
+      enabled: true
+      setNodeId: true
+      config: |
+        ui = true
+
+        listener "tcp" {
+          tls_disable = 1
+          address = "[::]:8200"
+          cluster_address = "[::]:8201"
+        }
+
+        storage "raft" {
+          path = "/vault/data"
+        }
+
+  extraVolumes: []
+  extraLabels: {}
+
+ui:
+  enabled: true
+  serviceType: "NodePort"
+  service: {}
+
+injector:
+  enabled: true

@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: ccr.ccs.tencentyun.com/tianzx/hawkeye-user
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 1000m 
+    memory: 1000Mi
+
+serviceAccount:
+  create: true
+  name: hawkeye-user-release
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 90 

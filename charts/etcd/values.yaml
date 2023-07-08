@@ -1,0 +1,67 @@
+replicaCount: 3
+
+auth:
+  client:
+    enabled: false
+  peer:
+    enabled: false
+
+config:
+  listenPeerUrls: http://0.0.0.0:2380
+  listenClientUrls: http://0.0.0.0:2379
+  initialCluster: etcd-0=http://etcd-0.etcd.svc.cluster.local:2380,etcd-1=http://etcd-1.etcd.svc.cluster.local:2380,etcd-2=http://etcd-2.etcd.svc.cluster.local:2380
+
+service:
+  type: ClusterIP
+  port: 2379
+  peerPort: 2380
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "2379"
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 10Gi
+  backups:
+    enabled: true
+    interval: 60m
+    retention: 24h
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+securityContext:
+  enabled: true
+  runAsUser: 1001
+  fsGroup: 1001
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchLabels:
+            app: etcd
+            release: bitnami-etcd
+
+tolerations:
+  - key: "node.kubernetes.io/unschedulable"
+    operator: "Exists"
+    effect: "NoExecute"
+    tolerationSeconds: 3600
+
+monitoring:
+  enabled: true
+  port: 2379
+  prometheusRule:
+    enabled: true
+    additionalLabels:
+      app: etcd

@@ -3,6 +3,9 @@ kind: VirtualService
 metadata:
   name: combined-virtualservice
 spec:
+  hosts:
+    - "42.192.1.41"
+    - "ai-finance.cloud"
   gateways:
     - ai-finance-istio-gateway
     - mesh
@@ -42,3 +45,27 @@ spec:
             host: kiali.istio-system.svc.cluster.local
             port:
               number: 20001
+    - name: consul-ui
+      match:
+        - uri:
+            prefix: /consul/
+            prefix: /v1/
+      route:
+        - destination:
+            host: consul-ui.consul.svc.cluster.local
+            port:
+              number: 80
+      headers:
+        request:
+          set:
+            X-Forwarded-Path: /consul
+            X-Forwarded-Prefix: /consul
+    - name: consul-ui-assets
+      match:
+        - uri:
+            prefix: /consul/ui/
+      route:
+        - destination:
+            host: consul-ui.consul.svc.cluster.local
+            port:
+              number: 80

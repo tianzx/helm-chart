@@ -6,9 +6,18 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "*"
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "42.192.1.41"
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "ai-finance.cloud"
+    tls:
+      mode: SIMPLE # 或者使用 MUTUAL
+      credentialName: ai-finance-cloud-crt-secret

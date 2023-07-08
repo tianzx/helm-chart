@@ -1,0 +1,35 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: etcd-server-cert
+spec:
+  secretName: etcd-server-auth
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  issuerRef:
+    name: etcd-issuer
+    kind: ClusterIssuer # 或者使用 ClusterIssuer，根据您的需求
+  commonName: etcd-server
+  dnsNames:
+  - "*.etcd.svc.cluster.local"
+  usages:
+  - server auth
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: etcd-peer-cert
+spec:
+  secretName: etcd-peer-auth
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  issuerRef:
+    name: etcd-issuer
+    kind: Issuer
+  commonName: etcd-peer
+  dnsNames:
+  - etcd-peer
+  - etcd-peer.default.svc.cluster.local
+  usages:
+  - server auth
+  - client auth
